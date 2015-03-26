@@ -1,0 +1,10 @@
+
+scenes:
+    The Entrance: 
+        content: >
+            This is the first scene. It is written using YAML. I can use *markdown*.
+    The second scene:
+        content: >
+            Here is not much more.
+
+            Let's see if this works
