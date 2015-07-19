@@ -4,11 +4,11 @@ $(function() {
     {
         $("#"+linkid).click(function(link_info) { return function()
         {
-            $("#"+link_info.src).fadeOut(1000, 
+            $("#"+link_info.src).fadeOut(500, 
                 function() {
-                $("#"+link_info.tgt).fadeIn(1000);
+                $("#"+link_info.tgt).fadeIn(500);
             });
         }}(links[linkid]));
     }
-    $("#scene0").show()
+    $("#node1").fadeIn(1500);
 });

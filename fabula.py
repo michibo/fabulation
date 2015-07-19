@@ -1,49 +1,81 @@
 
 import sys
 import yaml, json
+from itertools import chain
 
 import mistune
 from jinja2 import Template
 
 import argparse
 
-class RenderManager:
-    def __init__(self):
-        self._link_dict = dict()
+class Node(object):
+    def __init__( self, ident, name, yaml_tree ):
+        self._name = name
+        self._ident = "node%d" % ident
 
-    def getRenderer(self, scene):
-        link_dict = self._link_dict
+        self._nodes = [ type(self)(ident+i+1, name, vals) for i, (name, vals) in enumerate( yaml_tree.iteritems() ) ]
+
+        super(Node, self).__init__()
+
+    def render( self ):
+        out = dict()
+        out['id'] = self._ident
+        out['name'] = self._name
+        
+        return out
+
+    def __getitem__(self, key):
+        if self._name == key:
+            return self
+
+        for leave in self:
+            if leave._name == key:
+                return leave
+
+        raise KeyError()
+
+    def __iter__(self):
+        def gen():
+            yield self
+            for node in self._nodes:
+                for leave in node:
+                    yield leave
+
+        return gen()
+
+class Scene(Node):
+    def __init__( self, ident, name, yaml_tree ):
+        self._content = yaml_tree.pop('content', "")
+
+        link_dict = self._link_dict = dict()
+
         class FabulaRenderer( mistune.Renderer ):
             def link(self, link, title, text):
                 next_id = len(link_dict)
-                identifier = "link%d" % next_id
-                link_dict[identifier] = ( scene, link )
+                link_ident = "link%d_%d" % (ident, next_id)
+                link_dict[link_ident] = ( name, link )
 
-                return '<a id="%s" class="flink" href="#">%s</a>' % (identifier, text)
+                return '<a id="%s" class="flink" href="#">%s</a>' % (link_ident, text)
 
-        renderer = FabulaRenderer()
-        md = mistune.Markdown( renderer=renderer )
-        return md
+        self._renderer = FabulaRenderer()
 
-class Scene:
-    def __init__( self, identifier, name, content, **kwargs ):
-        self._name = name
-        self._content = content
+        super(Scene, self).__init__(ident, name, yaml_tree)
+    
+    @property
+    def visible(self):
+        return self._content != ""
 
-        self._identifier = identifier
+    def render( self ):
+        md = mistune.Markdown(renderer=self._renderer)
+        html_scene = md(self._content)
 
-    def render( self, md ):
-        html_scene = md.render(self._content)
-
-        out = dict()
-        out['id'] = self._identifier
-        out['name'] = self._name
+        out = super(Scene, self).render()
         out['content'] = html_scene
 
         return out
 
-def getScenesFromYAML( raw_scenes ):
-    return { name : Scene( "scene%d" % i, name, **attribs ) for i, (name, attribs) in enumerate(raw_scenes.iteritems()) }
+def FabulaTree(yaml_tree):
+    return Scene( 0, "root", yaml_tree )
 
 def main():
     frame_file = "frame.html"
@@ -58,20 +90,15 @@ def main():
     html_out_file = args.output
 
     with open(syu_in_file, "r") as i:
-        yaml_scenes = yaml.load( i.read() )['scenes']
+        yaml_tree = yaml.load( i.read() )
 
-    scene_dict = getScenesFromYAML( yaml_scenes )
-    renderManager = RenderManager()
+    fabulaTree = FabulaTree( yaml_tree )
+    scenes_contexts = [ leave.render() for leave in fabulaTree if leave.visible ]
 
-    scenes_contexts = [ 
-        scene.render(renderManager.getRenderer(name)) 
-                    for name,scene in scene_dict.iteritems() ]
+    link_dict = dict(sum( (list(leave._link_dict.items()) for leave in fabulaTree), [] ))
 
-    link_dict = renderManager._link_dict
-
-    links_info = { i : 
-                       {  "src" : scene_dict[src]._identifier, 
-                          "tgt" : scene_dict[tgt]._identifier }
+    links_info = { i : {  "src" : fabulaTree[src]._ident, 
+                          "tgt" : fabulaTree[tgt]._ident}
                   for i,(src,tgt) in link_dict.iteritems() }
     links_json = json.dumps(links_info)
 

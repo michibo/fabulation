@@ -3,9 +3,10 @@ The Entrance:
     content: >
         This is the first scene. It is written using YAML. I can use *markdown*.
         [Go on](The second scene).
-The second scene:
-    content: >
-        Here is not much more.
-        [Hello]( The Entrance )
 
-        Let's see if this works
+    The second scene:
+        content: >
+            Here is not much more.
+            [Hello]( The Entrance )
+
+            Let's see if this works
