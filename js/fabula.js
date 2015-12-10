@@ -1,14 +1,19 @@
 $(function() {
     $(".fscene").hide()
-    for (linkid in links)
+
+    for (objid in meta)
     {
-        $("#"+linkid).click(function(link_info) { return function()
+        obj = meta[objid]
+        for (linkid in obj.links)
         {
-            $("#"+link_info.src).fadeOut(500, 
-                function() {
-                $("#"+link_info.tgt).fadeIn(500);
-            });
-        }}(links[linkid]));
+            $("#"+linkid).click(function(src, tgt)            { return function()
+            {
+                $("#"+src).fadeOut(500, 
+                    function() {
+                    $("#"+tgt).fadeIn(500);
+                });
+            }}(objid, ids[obj.links[linkid]] ));
+        }
     }
     $("#node1").fadeIn(1500);
 });

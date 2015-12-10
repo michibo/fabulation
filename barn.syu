@@ -1,12 +1,19 @@
 ---
 The Entrance: 
     content: >
-        This is the first scene. It is written using YAML. I can use *markdown*.
+        Hallo, du darfst jetzt weiter gehen.
         [Go on](The second scene).
 
     The second scene:
         content: >
             Here is not much more.
             [Hello]( The Entrance )
+            [!](The third scene)
 
-            Let's see if this works
+    The third scene:
+        content: >
+            Maybe there is even some [more...](five)
+
+    five:
+        content: >
+            oiJREOIJFDSOIJLKJds[a](The third scene)
