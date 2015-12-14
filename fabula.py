@@ -97,8 +97,27 @@ class FabulaPic(Scene):
         out = super(FabulaPic, self).meta_render()
         out['pic'] = self._pic
 
+        return out
+
+class FabulaVid(FabulaPic):
+    def __init__( self, ident, name, yaml_tree ):
+        self._video = yaml_tree.pop('video', "")
+        print self._video
+
+        super(FabulaVid, self).__init__(ident, name, yaml_tree)
+    
+    @property
+    def visible(self):
+        return self._video != "" or super(FabulaVid, self).visible
+
+    def meta_render( self ):
+        out = super(FabulaVid, self).meta_render()
+        out['video'] = self._video
+
+        return out
+
 def FabulaTree(yaml_tree):
-    return Scene( 0, "root", yaml_tree )
+    return FabulaVid( 0, "root", yaml_tree )
 
 def main():
     frame_file = "frame.html"
