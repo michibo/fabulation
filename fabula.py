@@ -102,7 +102,7 @@ class FabulaPic(Scene):
 class FabulaVid(FabulaPic):
     def __init__( self, ident, name, yaml_tree ):
         self._video = yaml_tree.pop('video', "")
-        print self._video
+        print(self._video)
 
         super(FabulaVid, self).__init__(ident, name, yaml_tree)
     
