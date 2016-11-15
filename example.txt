@@ -1,19 +1,20 @@
 ---
 The Entrance: 
     content: >
-        Hallo, du darfst jetzt weiter gehen.
-        [Go on](The second scene).
+        Hallo, fabula kann verschiedene Szenen einblenden.
+        [Weiter](The second scene).
 
     The second scene:
         content: >
-            Here is not much more.
-            [Hello]( The Entrance )
-            [!](The third scene)
+            Hier gibt es noch mehr! Und es geht
+            [zurück]( The Entrance ) oder 
+            [noch weiter!](The third scene)
 
     The third scene:
         content: >
-            Maybe there is even some [more...](five)
+            Und vielleicht gibt es noch [mehr...](five)
 
     five:
+        pic: http://36.media.tumblr.com/3c2d21e7e91766f27e181b8e410e034d/tumblr_nrre33CFTo1qak053o1_1280.jpg
         content: >
-            oiJREOIJFDSOIJLKJds[a](The third scene)
+            GEIL! Bilder gehen auch! 

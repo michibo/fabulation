@@ -34,21 +34,35 @@
         var meta = {{ meta }};
         var ids = {{ ids }};
 
+        function get_click_fun(src, tgt) { return function()
+            {
+                src_obj = meta[src]
+                tgt_obj = meta[tgt]
+
+                if ( tgt_obj.pic )
+                {
+                    pic_url = "url(" + tgt_obj.pic + ")"
+                    $(".disp").css('background-image', pic_url)
+                    $(".disp").animate({opacity:1}, 500)
+                }
+
+                $("#"+src).fadeOut(50, 
+                    function() {
+                    $("#"+tgt).fadeIn(50);
+                });
+            }}
+
         $(function() {
             $(".fscene").hide()
+            $(".disp").css("opacity", "0");
 
             for (objid in meta)
             {
                 obj = meta[objid]
                 for (linkid in obj.links)
                 {
-                    $("#"+linkid).click(function(src, tgt)            { return function()
-                    {
-                        $("#"+src).fadeOut(500, 
-                            function() {
-                            $("#"+tgt).fadeIn(500);
-                        });
-                    }}(objid, ids[obj.links[linkid]] ));
+                    $("#"+linkid).click(
+                        get_click_fun(objid, ids[obj.links[linkid]] ));
                 }
             }
             $("#node1").fadeIn(1500);
