@@ -1,20 +1,45 @@
 ---
-The Entrance: 
-    content: >
-        Hallo, fabula kann verschiedene Szenen einblenden.
-        [Weiter](The second scene).
+root: 
+    content: |
+        Fabulation is a simple tool to narrate a story in a non-linear fashion. 
 
-    The second scene:
-        content: >
-            Hier gibt es noch mehr! Und es geht
-            [zurück]( The Entrance ) oder 
-            [noch weiter!](The third scene)
+        [continue](second)
 
-    The third scene:
-        content: >
-            Und vielleicht gibt es noch [mehr...](five)
+        [stop audio](stop)
 
-    five:
-        pic: http://36.media.tumblr.com/3c2d21e7e91766f27e181b8e410e034d/tumblr_nrre33CFTo1qak053o1_1280.jpg
-        content: >
-            GEIL! Bilder gehen auch! 
+stop:
+    stopaudio: True
+    content: |
+        Audio stopped!
+
+        [Go Back!](BACK1)
+
+second:
+    content: |
+        You can jump from scene to scene using links!
+
+        [go back]( root ) 
+
+        [continue]( third )
+
+third:
+    audio: https://upload.wikimedia.org/wikipedia/commons/4/47/Demo_delay.ogg
+    content: |
+        You can include sounds... 
+
+        Fabulation can be used to generate 'Audio-Slideshows'. 
+
+        [continue]( four )
+
+four:
+    pic: https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg
+    content: |
+        And pictures! 
+
+        [Full screen pictures are also possible](five) 
+
+        [Back to the beginning](root)
+
+five:
+    fullpic: https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg
+    next: four
