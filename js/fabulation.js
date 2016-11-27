@@ -108,44 +108,42 @@ function start_fabulation(meta)
             hist : [],
             init : function(obj)
             {
-                if("links" in obj)
+            },
+            unbind_src : function(event, src)
+            {
+                event.preventDefault()
+                $("body").unbind('click')
+                $(document).unbind('keypress')
+
+                if("links" in src)
                 {
-                    for (linkid in obj.links)
+                    for (linkid in src.links)
                     {
-                        $("#"+linkid).click(
-                            this.get_click_to_tgt(
-                                meta[obj.links[linkid]] ))
+                        $("#"+linkid).unbind('click')
                     }
                 }
 
-                if("backlinks" in obj)
+                if("backlinks" in src)
                 {
-                    for (linkid in obj.backlinks)
+                    for (linkid in src.backlinks)
                     {
-                        $("#"+linkid).click(
-                            this.get_click_back(
-                                obj.backlinks[linkid] ))
+                        $("#"+linkid).unbind('click')
                     }
                 }
             },
-            get_click_to_tgt : function(tgt) 
-            {
-                return function(event)
-                {
-                    event.preventDefault()
-                    $("body").unbind('click')
-                    $(document).unbind('keypress')
-                    
-                    start_scene(tgt)
-                }
-            },
-            get_click_back : function(n)
+            get_click_to_tgt : function(src, tgt) 
             {
                 return (function(event)
                 {
-                    event.preventDefault()
-                    $("body").unbind('click')
-                    $(document).unbind('keypress')
+                    this.unbind_src(event, src)
+                    start_scene(tgt)
+                }).bind(this)
+            },
+            get_click_back : function(src, n)
+            {
+                return (function(event)
+                {
+                    this.unbind_src(event, src)
 
                     if (n <= this.hist.length)
                     {
@@ -165,13 +163,33 @@ function start_fabulation(meta)
 
                     if( "nxt" in tgt )
                     {
-                        $("body").click( this.get_click_to_tgt( meta[tgt.nxt] ) )
-                        $(document).keypress( this.get_click_to_tgt( meta[tgt.nxt] ) )
+                        $("body").click( this.get_click_to_tgt( tgt, meta[tgt.nxt] ) )
+                        $(document).keypress( this.get_click_to_tgt( tgt, meta[tgt.nxt] ) )
                     }
                     else if( "bnxt" in tgt )
                     {
-                        $("body").click( this.get_click_back( tgt.bnxt ) )
-                        $(document).keypress( this.get_click_back( tgt.bnxt ) )
+                        $("body").click( this.get_click_back( tgt, tgt.bnxt ) )
+                        $(document).keypress( this.get_click_back( tgt, tgt.bnxt ) )
+                    }
+
+                    if("links" in tgt)
+                    {
+                        for (linkid in tgt.links)
+                        {
+                            $("#"+linkid).click(
+                                this.get_click_to_tgt(tgt,
+                                    meta[tgt.links[linkid]] ))
+                        }
+                    }
+
+                    if("backlinks" in tgt)
+                    {
+                        for (linkid in tgt.backlinks)
+                        {
+                            $("#"+linkid).click(
+                                this.get_click_back(tgt,
+                                    tgt.backlinks[linkid] ))
+                        }
                     }
 
                     $("#"+tgt.id).fadeIn(fadetime)

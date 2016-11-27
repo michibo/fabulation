@@ -1,6 +1,10 @@
 .fl,
 .fl:focus,
-.fl:hover {
+.fl:hover,
+a,
+a:focus,
+a:hover
+ {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
