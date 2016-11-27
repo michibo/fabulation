@@ -72,13 +72,13 @@ class Text(object):
                     meta['nxt'] = "%s" % nodes[self._next]._ident
                 except KeyError:
                     raise WrongLink("Cannot parse next-link \"%s\" in scene \"%s\"" % (self._next, name))
-        else:
-            if len(link_dict) + len(back_link_dict) == 1:
-                for _, tgt in link_dict.items():
-                    meta['nxt'] = tgt
-
-                for _, n in back_link_dict.items():
-                    meta['bnxt'] = n
+        #else:
+        #    if len(link_dict) + len(back_link_dict) == 1:
+        #        for _, tgt in link_dict.items():
+        #            meta['nxt'] = tgt
+        #
+        #        for _, n in back_link_dict.items():
+        #            meta['bnxt'] = n
 
         return view, meta
 
@@ -127,6 +127,9 @@ class Video(object):
 class Node(object):
     def __init__( self, ident, data, Features ):
         self._ident = "n%d" % ident
+
+        if not isinstance(data, dict):
+            data = { "content" : data }
 
         self._features = [ feature(data) for feature in Features ]
 

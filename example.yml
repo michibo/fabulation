@@ -14,13 +14,16 @@ stop:
 
         [Go Back!](BACK1)
 
-second:
+second: |
+    You can jump from scene to scene using links!
+
+    [continue]( third )
+
+    [go somewhere](somewhere)
+
+somewhere:
     content: |
-        You can jump from scene to scene using links!
-
-        [go back]( root ) 
-
-        [continue]( third )
+        Links can always point [back to bring you back where you came from!](BACK1)
 
 third:
     audio: https://upload.wikimedia.org/wikipedia/commons/4/47/Demo_delay.ogg
@@ -31,6 +34,8 @@ third:
 
         [continue]( four )
 
+        [go somewhere](somewhere)
+
 four:
     pic: https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg
     content: |
@@ -38,8 +43,25 @@ four:
 
         [Full screen pictures are also possible](five) 
 
+        [go somewhere](somewhere)
+
         [Back to the beginning](root)
 
 five:
     fullpic: https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg
-    next: four
+    next: six
+
+six:
+    fullpic: https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg
+    content: |
+        There can be overlay of the fullsize pictures. You can click or press a key to continue.
+    next: seven
+
+seven:
+    fullpic: https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg
+    content: |
+        Links are also possible: 
+
+        [go somewhere](somewhere)
+
+
