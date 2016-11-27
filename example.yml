@@ -60,8 +60,6 @@ six:
 seven:
     fullpic: https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg
     content: |
-        Links are also possible: 
-
         [go somewhere](somewhere)
 
 
