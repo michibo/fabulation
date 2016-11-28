@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="github.com/michibo/fabulation">
+    <meta name="author" content="fabulation">
+
+    <title>Fabulation</title>
+
+    <link rel="stylesheet" href="css/fabulation.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/howler.min.js"></script>
+    <script src="js/fabulation.js"></script>
+  </head>
+
+  <body>
+    <div class="bg">
+    </div>
+    <div class="content">
+        <div class="disp">
+        </div>
+        <div class="center-scene">
+              
+              <div id="n4" style="display: none;">
+              <p>Links can always point <span id="bn4_0" class="fl">back to bring you back where you came from!</span></p>
+
+              </div>
+              
+              <div id="n3" style="display: none;">
+              
+              </div>
+              
+              <div id="n5" style="display: none;">
+              <p>And pictures!</p>
+<p><span id="ln5_0" class="fl">Full screen pictures are also possible</span></p>
+<p><span id="ln5_1" class="fl">go somewhere</span></p>
+<p><span id="ln5_2" class="fl">Back to the beginning</span></p>
+
+              </div>
+              
+              <div id="n1" style="display: none;">
+              <p>Fabulation is a simple tool to narrate a story in a non-linear fashion.</p>
+<p><span id="ln1_0" class="fl">continue</span></p>
+<p><span id="ln1_1" class="fl">stop audio</span></p>
+
+              </div>
+              
+              <div id="n0" style="display: none;">
+              <p>There can be overlay of the fullsize pictures. You can click or press a key to continue.</p>
+
+              </div>
+              
+              <div id="n2" style="display: none;">
+              <p><span id="ln2_0" class="fl">go somewhere</span></p>
+
+              </div>
+              
+              <div id="n8" style="display: none;">
+              <p>You can jump from scene to scene using links!</p>
+<p><span id="ln8_0" class="fl">continue</span></p>
+<p><span id="ln8_1" class="fl">go somewhere</span></p>
+
+              </div>
+              
+              <div id="n7" style="display: none;">
+              <p>You can include sounds...</p>
+<p>Fabulation can be used to generate 'Audio-Slideshows'.</p>
+<p><span id="ln7_0" class="fl">continue</span></p>
+<p><span id="ln7_1" class="fl">go somewhere</span></p>
+
+              </div>
+              
+              <div id="n6" style="display: none;">
+              <p>Audio stopped!</p>
+<p><span id="bn6_0" class="fl">Go Back!</span></p>
+
+              </div>
+              
+        </div>
+    </div>
+
+    <script>
+        var meta = {"n4": {"backlinks": {"bn4_0": 1}}, "n7": {"audio": "https://upload.wikimedia.org/wikipedia/commons/4/47/Demo_delay.ogg", "links": {"ln7_1": "n4", "ln7_0": "n5"}}, "n5": {"links": {"ln5_0": "n3", "ln5_1": "n4", "ln5_2": "n1"}, "pic": "https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg"}, "n1": {"links": {"ln1_0": "n8", "ln1_1": "n6"}}, "n0": {"nxt": "n2", "fullpic": "https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg"}, "n2": {"links": {"ln2_0": "n4"}, "fullpic": "https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg"}, "n8": {"links": {"ln8_0": "n7", "ln8_1": "n4"}}, "n3": {"nxt": "n0", "fullpic": "https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg"}, "n6": {"stopaudio": true, "backlinks": {"bn6_0": 1}}};
+
+        $(function() {
+            start_fabulation(meta)(meta["n1"])
+        })
+    </script>
+  </body>
+</html>
