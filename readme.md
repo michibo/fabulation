@@ -20,6 +20,10 @@ Howto:
 
 See example.yml how to write a fabulation input file.
 
+Check out the result:
+
+[example.html](//htmlpreview.github.com/?https://github.com/michibo/fabulation/blob/master/example.html)
+
 Call
 
     python fabulation.py input.yml output.html
