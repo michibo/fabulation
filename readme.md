@@ -29,3 +29,5 @@ Call
     python fabulation.py input.yml output.html
 
 to use fabulation. The output.html uses jQuery and HowlerJS for sound.
+
+Full example: http://tmtnslt.com/jonas/
