@@ -117,8 +117,8 @@ function start_fabulation(meta)
                         $("#"+obj.id).trigger(obj["exit"])
                     })
                 }
-            }
-
+            },
+            start_scene : function(tgt) { }
         },        
         text : 
         {
