@@ -102,6 +102,24 @@ function start_fabulation(meta)
                 this.change_pic(tgt, "fullpic", ".bg")
             }
         },
+        event : 
+        {
+            init : function(obj)
+            {
+                if ("enter" in obj) {
+                    $("#"+obj.id).on("scene.entrance", function() {
+                        $("#"+obj.id).trigger(obj["enter"])
+                    })
+                }
+
+                if ("exit" in obj) {
+                    $("#"+obj.id).on("scene.exit", function() {
+                        $("#"+obj.id).trigger(obj["exit"])
+                    })
+                }
+            }
+
+        },        
         text : 
         {
             cur : "",
@@ -193,10 +211,12 @@ function start_fabulation(meta)
                     }
 
                     $("#"+tgt.id).fadeIn(fadetime)
+                    $("#"+tgt.id).trigger("scene.entrance")
                 }
 
                 if( this.cur )
                 {
+                    $("#"+this.cur).trigger("scene.exit")
                     $("#"+this.cur).fadeOut(fadetime, show_new_text.bind(this))
                 }
                 else
