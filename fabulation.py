@@ -146,6 +146,23 @@ class Node(object):
 
         return view, meta
 
+
+class Event(object):
+    def __init__( self, data ):
+        self._enter_event = data.pop('onEntrance',"")
+        self._exit_event = data.pop('onExit',"")
+
+    def render( self, name, nodes ):
+        meta = dict()
+        if self._enter_event:
+            meta['enter'] = "%s" % self._enter_event
+
+        if self._exit_event:
+            meta['exit'] = "%s" % self._exit_event
+
+        return dict(), meta
+
+
 def main():
     frame_file = "frame.html"
 
@@ -161,7 +178,7 @@ def main():
     with open(syu_in_file, "r") as i:
         yaml_dict = yaml.load( i.read() )
 
-    nodes = { name : Node( i, data, [ Text, Pic, Audio ] ) for i,(name,data) in enumerate(yaml_dict.items()) }
+    nodes = { name : Node( i, data, [ Text, Pic, Audio, Event ] ) for i,(name,data) in enumerate(yaml_dict.items()) }
 
     info = { node._ident : node.render( name, nodes ) for name, node in nodes.items() }
     view = [ v for i,(v,m) in info.items() ]
