@@ -38,12 +38,20 @@ class Text(object):
         
 
             return link_ident
+        
+        # hacked mistune version < 2 backward compatibility
+        try: # Remove this
+            class Renderer( mistune.Renderer ):
+                def link(self, link, title, text):
+                    link_ident = add_link(link)
 
-        class Renderer( mistune.Renderer ):
-            def link(self, link, title, text):
-                link_ident = add_link(link)
+                    return '<span id="%s" class="fl">%s</span>' % (link_ident, text)
+        except AttributeError: # Keep this to only support mistune 2
+            class Renderer( mistune.HTMLRenderer ):
+                def link(self, link, text, title):
+                    link_ident = add_link(link)
 
-                return '<span id="%s" class="fl">%s</span>' % (link_ident, text)
+                    return '<span id="%s" class="fl">%s</span>' % (link_ident, text)
 
         md = mistune.Markdown(renderer=Renderer())
         html_scene = md(self._content)
@@ -146,6 +154,23 @@ class Node(object):
 
         return view, meta
 
+
+class Event(object):
+    def __init__( self, data ):
+        self._enter_event = data.pop('onEntrance',"")
+        self._exit_event = data.pop('onExit',"")
+
+    def render( self, name, nodes ):
+        meta = dict()
+        if self._enter_event:
+            meta['enter'] = "%s" % self._enter_event
+
+        if self._exit_event:
+            meta['exit'] = "%s" % self._exit_event
+
+        return dict(), meta
+
+
 def main():
     frame_file = "frame.html"
 
@@ -159,9 +184,9 @@ def main():
     html_out_file = args.output
 
     with open(syu_in_file, "r") as i:
-        yaml_dict = yaml.load( i.read() )
+        yaml_dict = yaml.load( i.read(), Loader=yaml.SafeLoader)
 
-    nodes = { name : Node( i, data, [ Text, Pic, Audio ] ) for i,(name,data) in enumerate(yaml_dict.items()) }
+    nodes = { name : Node( i, data, [ Text, Pic, Audio, Event ] ) for i,(name,data) in enumerate(yaml_dict.items()) }
 
     info = { node._ident : node.render( name, nodes ) for name, node in nodes.items() }
     view = [ v for i,(v,m) in info.items() ]
