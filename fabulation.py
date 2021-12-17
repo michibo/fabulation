@@ -176,7 +176,7 @@ def main():
     html_out_file = args.output
 
     with open(syu_in_file, "r") as i:
-        yaml_dict = yaml.load( i.read() )
+        yaml_dict = yaml.load( i.read() , Loader=yaml.SafeLoader)
 
     nodes = { name : Node( i, data, [ Text, Pic, Audio, Event ] ) for i,(name,data) in enumerate(yaml_dict.items()) }
 
