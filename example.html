@@ -23,9 +23,44 @@
         </div>
         <div class="center-scene">
               
+              <div id="n0" style="display: none;">
+              <p>Fabulation is a simple tool to narrate a story in a non-linear fashion.</p>
+<p><span id="ln0_0" class="fl">continue</span></p>
+<p><span id="ln0_1" class="fl">stop audio</span></p>
+
+              </div>
+              
+              <div id="n1" style="display: none;">
+              <p>Audio stopped!</p>
+<p><span id="bn1_0" class="fl">Go Back!</span></p>
+
+              </div>
+              
               <div id="n2" style="display: none;">
-              <p><span id="ln2_0" class="fl">go somewhere</span></p>
-<p><span id="ln2_1" class="fl">Back to the beginning</span></p>
+              <p>You can jump from scene to scene using links!</p>
+<p><span id="ln2_0" class="fl">continue</span></p>
+<p><span id="ln2_1" class="fl">go somewhere</span></p>
+
+              </div>
+              
+              <div id="n3" style="display: none;">
+              <p>Links can always point <span id="bn3_0" class="fl">back to bring you back where you came from!</span></p>
+
+              </div>
+              
+              <div id="n4" style="display: none;">
+              <p>You can include sounds...</p>
+<p>Fabulation can be used to generate 'Audio-Slideshows'.</p>
+<p><span id="ln4_0" class="fl">continue</span></p>
+<p><span id="ln4_1" class="fl">go somewhere</span></p>
+
+              </div>
+              
+              <div id="n5" style="display: none;">
+              <p>And pictures!</p>
+<p><span id="ln5_0" class="fl">Full screen pictures are also possible</span></p>
+<p><span id="ln5_1" class="fl">go somewhere</span></p>
+<p><span id="ln5_2" class="fl">Back to the beginning</span></p>
 
               </div>
               
@@ -34,48 +69,13 @@
               </div>
               
               <div id="n7" style="display: none;">
-              <p>Audio stopped!</p>
-<p><span id="bn7_0" class="fl">Go Back!</span></p>
-
-              </div>
-              
-              <div id="n8" style="display: none;">
-              <p>Fabulation is a simple tool to narrate a story in a non-linear fashion.</p>
-<p><span id="ln8_0" class="fl">continue</span></p>
-<p><span id="ln8_1" class="fl">stop audio</span></p>
-
-              </div>
-              
-              <div id="n4" style="display: none;">
-              <p>And pictures!</p>
-<p><span id="ln4_0" class="fl">Full screen pictures are also possible</span></p>
-<p><span id="ln4_1" class="fl">go somewhere</span></p>
-<p><span id="ln4_2" class="fl">Back to the beginning</span></p>
-
-              </div>
-              
-              <div id="n5" style="display: none;">
-              <p>Links can always point <span id="bn5_0" class="fl">back to bring you back where you came from!</span></p>
-
-              </div>
-              
-              <div id="n1" style="display: none;">
               <p>There can be overlay of the fullsize pictures. You can click or press a key to continue.</p>
 
               </div>
               
-              <div id="n0" style="display: none;">
-              <p>You can include sounds...</p>
-<p>Fabulation can be used to generate 'Audio-Slideshows'.</p>
-<p><span id="ln0_0" class="fl">continue</span></p>
-<p><span id="ln0_1" class="fl">go somewhere</span></p>
-
-              </div>
-              
-              <div id="n3" style="display: none;">
-              <p>You can jump from scene to scene using links!</p>
-<p><span id="ln3_0" class="fl">continue</span></p>
-<p><span id="ln3_1" class="fl">go somewhere</span></p>
+              <div id="n8" style="display: none;">
+              <p><span id="ln8_0" class="fl">go somewhere</span></p>
+<p><span id="ln8_1" class="fl">Back to the beginning</span></p>
 
               </div>
               
@@ -83,10 +83,10 @@
     </div>
 
     <script>
-        var meta = {"n2": {"links": {"ln2_0": "n5", "ln2_1": "n8"}, "fullpic": "https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg"}, "n6": {"nxt": "n1", "fullpic": "https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg"}, "n7": {"stopaudio": true, "backlinks": {"bn7_0": 1}}, "n8": {"links": {"ln8_1": "n7", "ln8_0": "n3"}}, "n4": {"links": {"ln4_2": "n8", "ln4_1": "n5", "ln4_0": "n6"}, "pic": "https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg"}, "n5": {"backlinks": {"bn5_0": 1}}, "n1": {"nxt": "n2", "fullpic": "https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg"}, "n0": {"links": {"ln0_0": "n4", "ln0_1": "n5"}, "audio": "https://upload.wikimedia.org/wikipedia/commons/4/47/Demo_delay.ogg"}, "n3": {"links": {"ln3_1": "n5", "ln3_0": "n0"}}};
+        var meta = {"n0": {"links": {"ln0_0": "n2", "ln0_1": "n1"}}, "n1": {"backlinks": {"bn1_0": 1}, "stopaudio": true}, "n2": {"links": {"ln2_0": "n4", "ln2_1": "n3"}}, "n3": {"backlinks": {"bn3_0": 1}}, "n4": {"links": {"ln4_0": "n5", "ln4_1": "n3"}, "audio": "https://upload.wikimedia.org/wikipedia/commons/4/47/Demo_delay.ogg"}, "n5": {"links": {"ln5_0": "n6", "ln5_1": "n3", "ln5_2": "n0"}, "pic": "https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg"}, "n6": {"nxt": "n7", "fullpic": "https://c3.staticflickr.com/3/2580/4080412658_186be3d7c1_b.jpg"}, "n7": {"nxt": "n8", "fullpic": "https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg"}, "n8": {"links": {"ln8_0": "n3", "ln8_1": "n0"}, "fullpic": "https://c6.staticflickr.com/8/7145/6537571341_42047c7cc0_b.jpg"}};
 
         $(function() {
-            start_fabulation(meta)(meta["n8"])
+            start_fabulation(meta)(meta["n0"])
         })
     </script>
   </body>
