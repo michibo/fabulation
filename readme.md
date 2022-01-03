@@ -1,5 +1,5 @@
-What is it?
-===========
+fabulation
+==========
 
 [fabulation](//github.com/michibo/fabulation) is a simple tool to narrate a story in a non-linear fashion. In other words it can be used to create very simple text adventures. You can write a set of 'scenes' and jump from scene to scene using links. Each scene can be decorated with audio or pictures. 
 
