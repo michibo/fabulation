@@ -2,32 +2,34 @@
 Fabulation
 ==========
 
-Fabulation is a simple tool to narrate a story in a non-linear fashion. You can write a set of 'scenes' and jump from scene to scene using links. Each scene can be decorated with audio or pictures. 
+[fabulation](//github.com/michibo/fabulation) is a simple tool to narrate a story in a non-linear fashion. In other words it can be used to create very simple text adventures. You can write a set of 'scenes' and jump from scene to scene using links. Each scene can be decorated with audio or pictures. 
 
 Fabulation generates a html-file that you can access via browser and publish on the internet. 
+
 
 Requirements:
 ============
 
-fabulation needs:
--   python3 (maybe 2 also works?)
--   pyyaml
--   jinja2
--   mistune
+To run **fabulation** a python3 installation is required. **fabulation** additionally requires
+- [Mistune](//mistune.readthedocs.io/) as its Markdown implementation, 
+- [Jinja2](//jinja.palletsprojects.com/) as a template engine and 
+- [PyYAML](//pyyaml.org/) to read and write configuration files. 
+
+The extra python packages can be installed for instance with *pip*
+
+    pip install mistune jinja2 pyyaml
 
 Howto:
 ======
 
-See example.yml how to write a fabulation input file.
-
-Check out the result:
+See example.yml for an example on how to write a fabulation input file. The result is
 
 [example.html](//htmlpreview.github.com/?https://github.com/michibo/fabulation/blob/master/example.html)
 
-Call
+To generate an output (HTML) from an input (yml) file all
 
     python fabulation.py input.yml output.html
 
-to use fabulation. The output.html uses jQuery and HowlerJS for sound.
+The output.html uses [jQuery](//jquery.com/) and [HowlerJS](//howlerjs.com/) for sounds.
 
-Full example: http://tmtnslt.com/jonas/
+A very eleborate example can be found here: http://tmtnslt.com/jonas/
