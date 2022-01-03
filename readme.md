@@ -24,11 +24,11 @@ Howto:
 
 See example.yml for an example on how to write a fabulation input file. The result is
 
-[example.html](//htmlpreview.github.com/?https://github.com/michibo/fabulation/blob/master/example.html)
+[example.html](//htmlpreview.github.io/?https://github.com/michibo/fabulation/blob/master/example.html)
 
-To generate an output (HTML) from an input (yml) file all
+To generate an output (example.html) from an input (example.yml) file all
 
-    python fabulation.py input.yml output.html
+    python fabulation.py example.yml example.html
 
 The output.html uses [jQuery](//jquery.com/) and [HowlerJS](//howlerjs.com/) for sounds.
 
