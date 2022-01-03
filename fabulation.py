@@ -1,4 +1,7 @@
 
+# Author: Michael Borinsky
+# Github: https://github.com/michibo/fabulation
+
 import sys
 import yaml, json
 from itertools import chain

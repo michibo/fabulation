@@ -28,7 +28,7 @@ somewhere:
 third:
     audio: https://upload.wikimedia.org/wikipedia/commons/4/47/Demo_delay.ogg
     content: |
-        You can include sounds... 
+        You can include sounds... (you should hear a sound now)
 
         Fabulation can be used to generate 'Audio-Slideshows'. 
 

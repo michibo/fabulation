@@ -1,4 +1,7 @@
 
+// Author: Michael Borinsky
+// Github: https://github.com/michibo/fabulation
+
 function start_fabulation(meta)
 {
     function start_scene( tgt )
