@@ -5,7 +5,7 @@ root:
 
         [continue](second)
 
-        [stop audio](stop)
+        [stop audio (might not have been activated yet)](stop)
 
 stop:
     stopaudio: True
