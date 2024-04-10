@@ -42,19 +42,11 @@ class Text(object):
 
             return link_ident
         
-        # hacked mistune version < 2 backward compatibility
-        try: # Remove this
-            class Renderer( mistune.Renderer ):
-                def link(self, link, title, text):
-                    link_ident = add_link(link)
+        class Renderer( mistune.HTMLRenderer ):
+            def link(self, text, url, title=None):
+                link_ident = add_link(url)
 
-                    return '<span id="%s" class="fl">%s</span>' % (link_ident, text)
-        except AttributeError: # Keep this to only support mistune 2
-            class Renderer( mistune.HTMLRenderer ):
-                def link(self, link, text, title):
-                    link_ident = add_link(link)
-
-                    return '<span id="%s" class="fl">%s</span>' % (link_ident, text)
+                return '<span id="%s" class="fl">%s</span>' % (link_ident, text)
 
         md = mistune.Markdown(renderer=Renderer())
         html_scene = md(self._content)
