@@ -10,7 +10,7 @@ Requirements:
 ============
 
 To run **fabulation** a python3 installation is required. **fabulation** additionally requires
-- [Mistune](//mistune.readthedocs.io/) as its Markdown implementation, 
+- [Mistune](//mistune.readthedocs.io/) as its Markdown implementation (mistune v3 is now required), 
 - [Jinja2](//jinja.palletsprojects.com/) as a template engine and 
 - [PyYAML](//pyyaml.org/) to read and write configuration files. 
 
